@@ -1,0 +1,4 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  com.loy.httprequestsloggerspringbootstarter.init.LogEnvironmentPostProcessor
+org.springframework.boot.diagnostics.FailureAnalyzer=\
+  com.loy.httprequestsloggerspringbootstarter.init.LoggingFailureAnalyzer
