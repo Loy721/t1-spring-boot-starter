@@ -1,6 +1,6 @@
 package com.loy.httprequestsloggerspringbootstarter.init;
 
-import com.loy.httprequestsloggerspringbootstarter.exception.LoggingStartupException;
+import com.loy.httprequestsloggerspringbootstarter.exception.LogStartupException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
@@ -24,7 +24,7 @@ public class LogEnvironmentPostProcessor implements EnvironmentPostProcessor {
         if (property != null
                 && !property.equalsIgnoreCase("false")
                 && !property.equalsIgnoreCase("true")) {
-            throw new LoggingStartupException("Ошибка при проверке свойства " + nameProperty + " (может содержать только: true или false)");
+            throw new LogStartupException("Ошибка при проверке свойства " + nameProperty + " (может содержать только: true или false)");
         }
     }
 }

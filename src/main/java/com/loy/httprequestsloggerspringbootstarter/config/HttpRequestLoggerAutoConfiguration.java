@@ -1,6 +1,6 @@
 package com.loy.httprequestsloggerspringbootstarter.config;
 
-import com.loy.httprequestsloggerspringbootstarter.interceptor.LoggingInterceptor;
+import com.loy.httprequestsloggerspringbootstarter.interceptor.HttpRequestLogInterceptor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -15,17 +15,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class HttpRequestLoggerAutoConfiguration {
 
     @Bean
-    public LoggingInterceptor loggingInterceptor(HttpRequestLogProperty httpRequestLogProperty) {
-        return new LoggingInterceptor(httpRequestLogProperty);
+    public HttpRequestLogInterceptor loggingInterceptor(HttpRequestLogProperty httpRequestLogProperty) {
+        return new HttpRequestLogInterceptor(httpRequestLogProperty);
     }
 
     @Bean
     @ConditionalOnBean(name = "loggingInterceptor")
-    public WebMvcConfigurer webMvcConfigurer(LoggingInterceptor loggingInterceptor) {
+    public WebMvcConfigurer webMvcConfigurer(HttpRequestLogInterceptor httpRequestLogInterceptor) {
         return new WebMvcConfigurer() {
             @Override
             public void addInterceptors(InterceptorRegistry registry) {
-                registry.addInterceptor(loggingInterceptor);
+                registry.addInterceptor(httpRequestLogInterceptor);
             }
         };
     }

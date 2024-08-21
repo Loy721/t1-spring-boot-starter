@@ -16,12 +16,10 @@ import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
-public class LoggingInterceptor implements HandlerInterceptor {
+public class HttpRequestLogInterceptor implements HandlerInterceptor {
 
     private final HttpRequestLogProperty httpRequestLogProperty;
     private final static String START_TIME_ATTRIBUTE = "start-time";
-
-    private final static String TRACE_ID = "trace-id";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -47,7 +45,7 @@ public class LoggingInterceptor implements HandlerInterceptor {
         HttpRequestLog httpRequestLog = new HttpRequestLog();
         httpRequestLog.setRequestHeaders(getHeaders(request));
         httpRequestLog.setResponseHeaders(getHeaders(response));
-        httpRequestLog.setUrl(request.getRequestURL().toString());//TODO
+        httpRequestLog.setUrl(request.getRequestURL().toString());
         httpRequestLog.setDuration(duration);
         httpRequestLog.setHttpMethod(HttpMethod.valueOf(request.getMethod()));
         httpRequestLog.setStatusCode(HttpStatus.valueOf(response.getStatus()));
