@@ -36,3 +36,4 @@ URL: http://localhost:8080/
  ```
 
 4. Для логирования http запросов использовался Interceptor
+5. Скрин прохождения тестов:![img.png](img.png)
